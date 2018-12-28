@@ -7,7 +7,7 @@ public class HelloWorld {
         //System.out.println("Hello World!");
         //System.out.println("Расстояние = " + distance(p1, p2));
 
-        System.out.println("Расстояние от точки с координатами " + p1.a+ ", " + p1.b + " до точки " + p2.a + ", " + p2.b + " = " + Point.distance(p1, p2));
+        System.out.println("Расстояние от точки с координатами " + p1.a+ ", " + p1.b + " до точки " + p2.a + ", " + p2.b + " = " + p1.distance(p2));
 
     }
 
