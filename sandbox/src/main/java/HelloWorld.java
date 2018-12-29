@@ -1,8 +1,8 @@
 public class HelloWorld {
 
     public static void main(String[] args) {
-        Point p1 = new Point(7.1, 2.2);
-        Point p2 = new Point(13.3, 4.4);
+        Point p1 = new Point(1.0010, -2.0);
+        Point p2 = new Point(198765.0, 2.34343);
 
         //System.out.println("Hello World!");
         //System.out.println("Расстояние = " + distance(p1, p2));

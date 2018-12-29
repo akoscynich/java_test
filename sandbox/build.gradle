@@ -2,3 +2,11 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = "HelloWorld"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.0.0-beta1'
+}
