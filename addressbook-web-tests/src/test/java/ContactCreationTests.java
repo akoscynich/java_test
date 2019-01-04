@@ -1,12 +1,11 @@
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class GroupCreationTests {
+public class ContactCreationTests {
     private WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
@@ -24,34 +23,24 @@ public class GroupCreationTests {
     }
 
     @Test
-    public void testGroupCreation() throws Exception {
-        gotoGroupPage();
-        initGroupCreation();
-        fillGroupForm(new GroupData("test1", "test2", "test3"));
-        submitGroupCreation();
-        returnToGroupPage();
+    public void testContactCreation() throws Exception {
+        initContactCreation();
+        fillContactForm(new ContactData("First name", "Middle name", "Last name"));
+        submitContactCreation();
     }
 
-    private void returnToGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
+    private void fillContactForm(ContactData contactData) {
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
+        wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     }
 
-    private void submitGroupCreation() {
+    private void initContactCreation() {
+        wd.findElement(By.linkText("add new")).click();
+    }
+
+    private void submitContactCreation() {
         wd.findElement(By.name("submit")).click();
-    }
-
-    private void fillGroupForm(GroupData groupData) {
-        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
-
-    private void initGroupCreation() {
-        wd.findElement(By.name("new")).click();
-    }
-
-    private void gotoGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
     }
 
     @AfterMethod(alwaysRun = true)
