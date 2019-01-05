@@ -4,27 +4,24 @@ import data.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ContactHelper {
-
-    private WebDriver wd;
+public class ContactHelper extends HelperBase{
 
     public ContactHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void fillContactForm(ContactData contactData) {
-        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-        wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
-        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
+        type(By.name("firstname"), (contactData.getFirstname()));
+        type(By.name("middlename"), (contactData.getMiddlename()));
+        type(By.name("lastname"), (contactData.getLastname()));
     }
 
     public void initContactCreation() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void submitContactCreation() {
-        wd.findElement(By.name("submit")).click();
+        click(By.name("submit"));
     }
-
 
 }
