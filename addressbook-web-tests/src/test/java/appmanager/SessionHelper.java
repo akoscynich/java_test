@@ -11,11 +11,15 @@ public class SessionHelper {
         this.wd = wd;
     }
 
-
     public void login(String username, String password) {
         wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.id("LoginForm")).submit();
+    }
+
+
+    public void logout() {
+        wd.findElement(By.linkText("Logout")).click();
     }
 
 }
