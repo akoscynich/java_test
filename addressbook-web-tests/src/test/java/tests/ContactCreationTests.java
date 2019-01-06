@@ -3,7 +3,6 @@ package tests;
 import org.testng.annotations.*;
 import data.ContactData;
 
-
 public class ContactCreationTests extends TestBase {
 
     @Test

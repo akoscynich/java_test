@@ -35,4 +35,18 @@ public class GroupHelper extends HelperBase {
     public void selectGroup() {
         click(By.name("selected[]"));
     }
+
+    public void editSelectedGroup() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupEdition() {
+        click(By.name("update"));
+    }
+
+    public void clearGroupForm() {
+        clear(By.name("group_name"));
+        clear(By.name("group_header"));
+        clear(By.name("group_footer"));
+    }
 }

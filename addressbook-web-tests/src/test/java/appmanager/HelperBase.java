@@ -22,6 +22,11 @@ public class HelperBase {
         wd.findElement(locator).click();
     }
 
+    protected void clear(By locator) {
+        wd.findElement(locator).clear();
+    }
+
+
     private boolean isElementPresent(By by) {
         try {
             wd.findElement(by);
@@ -39,5 +44,6 @@ public class HelperBase {
             return false;
         }
     }
+
 
 }
