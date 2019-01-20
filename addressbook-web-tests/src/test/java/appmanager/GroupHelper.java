@@ -49,4 +49,15 @@ public class GroupHelper extends HelperBase {
         clear(By.name("group_header"));
         clear(By.name("group_footer"));
     }
+
+    public void createGroup(GroupData data){
+        initGroupCreation();
+        fillGroupForm(data);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public boolean isThereAGroup() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
