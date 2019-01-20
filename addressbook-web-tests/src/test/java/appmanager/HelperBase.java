@@ -26,6 +26,10 @@ public class HelperBase {
         wd.findElement(locator).clear();
     }
 
+    protected void find(By locator) {
+        wd.findElement(locator);
+    }
+
 
     private boolean isElementPresent(By by) {
         try {
