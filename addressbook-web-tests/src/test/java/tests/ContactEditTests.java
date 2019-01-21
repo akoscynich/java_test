@@ -7,6 +7,7 @@ public class ContactEditTests extends TestBase {
 
     @Test
     public void testContactEdit() throws Exception {
+        app.getNavigationHelper().gotoHomePage();
         if (! app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact(new ContactData("First name", "Middle name", "Last name"));
         }
