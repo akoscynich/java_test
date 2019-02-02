@@ -47,16 +47,18 @@ public class ContactHelper extends HelperBase{
         clear(By.name("firstname"));
         clear(By.name("middlename"));
         clear(By.name("lastname"));
+
     }
 
     public void submitContactEdit() {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData data){
+    public void createContact(ContactData data) throws InterruptedException {
         initContactCreation();
         fillContactForm(data);
         submitContactCreation();
+        click(By.linkText("home"));
     }
 
     public boolean isThereAContact() {
@@ -70,7 +72,8 @@ public class ContactHelper extends HelperBase{
             List<WebElement> cells = row.findElements(By.tagName("td"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
-            ContactData contact = new ContactData(firstName, null, lastName);
+            int id = Integer.parseInt(row.findElement(By.cssSelector("input")).getAttribute("id"));
+            ContactData contact = new ContactData(firstName, null, lastName, id);
             contacts.add(contact);
         }
         return contacts;

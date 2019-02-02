@@ -4,7 +4,7 @@ package data;
 import java.util.Objects;
 
 public class GroupData {
-    private  int id;
+    private int id;
     private final String name;
     private final String header;
     private final String footer;
