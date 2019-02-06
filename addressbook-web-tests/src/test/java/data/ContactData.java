@@ -4,25 +4,31 @@ import java.util.Objects;
 
 public class ContactData {
 
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private int id;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private int id = Integer.MAX_VALUE;
 
-    public ContactData(String firstname, String middlename, String lastname, int id) {
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
+        return this;
+    }
+
+    public ContactData withMiddlename(String middlename) {
         this.middlename = middlename;
+        return this;
+    }
+
+    public ContactData withLastname(String lastname) {
         this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
     }
 
-    public ContactData(String firstname, String middlename, String lastname) {
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.id = Integer.MAX_VALUE;
-
-    }
 
     public int getId() {
         return id;
