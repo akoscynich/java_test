@@ -18,7 +18,7 @@ public class GroupEditTests extends TestBase {
         }
     }
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void testGroupEdition() throws Exception {
 
         List<GroupData> before = app.group().list();

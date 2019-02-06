@@ -66,7 +66,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void modify(int index, ContactData contact) {
-        selectContact(index);
+        //selectContact(index);
         initContactEdit();
         clearContactForm();
         fillContactForm(contact);
