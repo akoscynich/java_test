@@ -29,7 +29,6 @@ public class ContactData {
         return this;
     }
 
-
     public int getId() {
         return id;
     }

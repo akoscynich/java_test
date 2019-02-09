@@ -43,8 +43,10 @@ public class ContactHelper extends HelperBase{
         find(By.cssSelector("div.msgbox"));
     }
 
-    public void initContactEdit() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactEdit(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+
+
     }
 
     public void clearContactForm() {
@@ -66,8 +68,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void modify(int index, ContactData contact) {
-        //selectContact(index);
-        initContactEdit();
+        initContactEdit(index);
         clearContactForm();
         fillContactForm(contact);
         submitContactEdit();
