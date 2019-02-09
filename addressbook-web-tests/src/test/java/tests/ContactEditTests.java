@@ -14,7 +14,7 @@ public class ContactEditTests extends TestBase {
     public void ensurePrecon() {
         app.goTo().homePage();
         if (app.contact().list().size() == 0){
-            app.contact().create(new ContactData().withFirstname("First name"));
+            app.contact().create(new ContactData().withFirstname("First name").withMiddlename("Middle name").withLastname("Last name"));
         }
     }
 
