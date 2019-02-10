@@ -1,9 +1,14 @@
 package tests;
 
 import data.ContactData;
+import data.Contacts;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,19 +26,19 @@ public class ContactEditTests extends TestBase {
 
     @Test
     public void testContactEdit() throws Exception {
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         //int index = before.size() -1;
         ContactData contact = new ContactData()
                 .withId(modifiedContact.getId()).withFirstname("First name1").withMiddlename("Middle name1").withLastname("Last name1");
         app.contact().modify(contact);
-        Set<ContactData> after = app.contact().all();
-        Assert.assertEquals(after.size(), before.size());
+        Contacts after = app.contact().all();
+        assertEquals(after.size(), before.size());
 
-        before.remove(modifiedContact);
-        before.add(contact);
+        //before.remove(modifiedContact);
+        //before.add(contact);
 
-        Assert.assertEquals(before, after);
+        assertThat(before.without(modifiedContact).withAdded(contact), equalTo(after));
     }
 
 

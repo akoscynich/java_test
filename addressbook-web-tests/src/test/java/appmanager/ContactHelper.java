@@ -1,6 +1,7 @@
 package appmanager;
 
 import data.ContactData;
+import data.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -104,8 +105,8 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }*/
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry"));//new ArrayList<WebElement>();
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
