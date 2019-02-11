@@ -1,19 +1,14 @@
 package tests;
 
 import data.ContactData;
-import data.Contacts;
-import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
-import java.util.List;
-import java.util.Set;
-
-public class ContactDeletionTests extends TestBase {
+public class ContactInfoTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecon() {
@@ -30,20 +25,20 @@ public class ContactDeletionTests extends TestBase {
         }
     }
 
-    @Test//(enabled = false)
-    public void testContactDeletion() throws Exception {
+    @Test
+    public void testContactPhones(){
 
-        Contacts before = app.contact().all();
-        ContactData deletedContact = before.iterator().next();
-        //int index = before.size() -1;
-        app.contact().delete(deletedContact);
-        assertThat(app.contact().count(), equalTo(before.size() - 1));
-        Contacts after = app.contact().all();
+        app.goTo().homePage();
+        ContactData contact = app.contact().all().iterator().next();
+        ContactData infoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        //before.remove(deletedContact);
-        assertEquals(before.without(deletedContact), after);
+        assertThat(contact.getHomePhone(), equalTo(cleaned(infoFromEditForm.getHomePhone())));
+        assertThat(contact.getMobilePhone(), equalTo(cleaned(infoFromEditForm.getMobilePhone())));
+
     }
 
-
+    public String cleaned(String phone){
+        return phone.replaceAll("\\s","").replaceAll("[-()]","");
+    }
 
 }

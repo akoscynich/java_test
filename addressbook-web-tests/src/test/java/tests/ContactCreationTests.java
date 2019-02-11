@@ -18,7 +18,14 @@ public class ContactCreationTests extends TestBase {
     @Test(enabled = true)
     public void testContactCreation() throws Exception {
         Contacts before = app.contact().all();
-        ContactData contact = new ContactData().withFirstname("First name1").withMiddlename("Middle name1").withLastname("Last name1");
+        ContactData contact = new ContactData()
+                .withFirstname("First name1")
+                .withMiddlename("Middle name1")
+                .withLastname("Last name1")
+                .withAddress("address")
+                .withEmail("email")
+                .withHomePhone("111")
+                .withMobilePhone("222");
         app.contact().create(contact);
         app.goTo().homePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));

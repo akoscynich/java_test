@@ -20,7 +20,14 @@ public class ContactEditTests extends TestBase {
     public void ensurePrecon() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0){
-            app.contact().create(new ContactData().withFirstname("First name").withMiddlename("Middle name").withLastname("Last name"));
+            app.contact().create(new ContactData()
+                    .withFirstname("First name")
+                    .withMiddlename("Middle name")
+                    .withLastname("Last name")
+                    .withAddress("address")
+                    .withEmail("email")
+                    .withHomePhone("111")
+                    .withMobilePhone("222"));
         }
     }
 
@@ -30,7 +37,14 @@ public class ContactEditTests extends TestBase {
         ContactData modifiedContact = before.iterator().next();
         //int index = before.size() -1;
         ContactData contact = new ContactData()
-                .withId(modifiedContact.getId()).withFirstname("First name1").withMiddlename("Middle name1").withLastname("Last name1");
+                .withId(modifiedContact.getId())
+                .withFirstname("First name1")
+                .withMiddlename("Middle name1")
+                .withLastname("Last name1")
+                .withAddress("address")
+                .withEmail("email")
+                .withHomePhone("111")
+                .withMobilePhone("222");
         app.contact().modify(contact);
         assertEquals(app.contact().count(), before.size());
         Contacts after = app.contact().all();
