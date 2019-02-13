@@ -25,8 +25,11 @@ public class ContactDeletionTests extends TestBase {
                     .withLastname("Last name")
                     .withAddress("address")
                     .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3")
                     .withHomePhone("111")
-                    .withMobilePhone("222"));
+                    .withMobilePhone("222")
+                    .withWorkPhone("333"));
         }
     }
 

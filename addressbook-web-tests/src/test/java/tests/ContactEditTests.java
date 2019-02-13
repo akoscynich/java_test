@@ -26,8 +26,11 @@ public class ContactEditTests extends TestBase {
                     .withLastname("Last name")
                     .withAddress("address")
                     .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3")
                     .withHomePhone("111")
-                    .withMobilePhone("222"));
+                    .withMobilePhone("222")
+                    .withWorkPhone("333"));
         }
     }
 
@@ -37,14 +40,17 @@ public class ContactEditTests extends TestBase {
         ContactData modifiedContact = before.iterator().next();
         //int index = before.size() -1;
         ContactData contact = new ContactData()
-                .withId(modifiedContact.getId())
                 .withFirstname("First name1")
                 .withMiddlename("Middle name1")
                 .withLastname("Last name1")
-                .withAddress("address")
-                .withEmail("email")
-                .withHomePhone("111")
-                .withMobilePhone("222");
+                .withAddress("address1")
+                .withEmail("email1")
+                .withEmail2("email21")
+                .withEmail3("email31")
+                .withHomePhone("1111")
+                .withMobilePhone("2221")
+                .withWorkPhone("3331")
+                .withId(modifiedContact.getId());
         app.contact().modify(contact);
         assertEquals(app.contact().count(), before.size());
         Contacts after = app.contact().all();
