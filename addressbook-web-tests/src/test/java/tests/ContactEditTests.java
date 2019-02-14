@@ -2,7 +2,6 @@ package tests;
 
 import data.ContactData;
 import data.Contacts;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,16 +9,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-
 public class ContactEditTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecon() {
         app.goTo().homePage();
-        if (app.contact().all().size() == 0){
+        if (app.contact().all().size() == 0) {
             app.contact().create(new ContactData()
                     .withFirstname("First name")
                     .withMiddlename("Middle name")
@@ -60,7 +55,4 @@ public class ContactEditTests extends TestBase {
 
         assertThat(before.without(modifiedContact).withAdded(contact), equalTo(after));
     }
-
-
-
 }

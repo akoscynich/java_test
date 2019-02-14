@@ -6,10 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -22,16 +19,17 @@ public class ContactHelper extends HelperBase{
     }
 
     public void fillContactForm(ContactData contactData) {
-        type(By.name("firstname"), (contactData.getFirstname()));
-        type(By.name("middlename"), (contactData.getMiddlename()));
-        type(By.name("lastname"), (contactData.getLastname()));
-        type(By.name("address"), (contactData.getAddress()));
-        type(By.name("email"), (contactData.getEmail()));
-        type(By.name("email2"), (contactData.getEmail2()));
-        type(By.name("email3"), (contactData.getEmail3()));
-        type(By.name("home"), (contactData.getHomePhone()));
-        type(By.name("mobile"), (contactData.getMobilePhone()));
-        type(By.name("work"), (contactData.getWorkPhone()));
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("middlename"), contactData.getMiddlename());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
+        type(By.name("photo"), contactData.getPhoto().getAbsolutePath());
     }
 
     public void initContactCreation() {

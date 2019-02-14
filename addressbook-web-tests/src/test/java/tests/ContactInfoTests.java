@@ -1,11 +1,9 @@
 package tests;
 
 import data.ContactData;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

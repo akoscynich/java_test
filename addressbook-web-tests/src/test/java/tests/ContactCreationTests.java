@@ -1,23 +1,20 @@
 package tests;
 
-import data.Contacts;
-import org.testng.Assert;
-import org.testng.annotations.*;
 import data.ContactData;
+import data.Contacts;
+import org.testng.annotations.Test;
+
+import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
     @Test(enabled = true)
     public void testContactCreation() throws Exception {
         Contacts before = app.contact().all();
+        File photo = new File("src/test/resources/s1200.png");
         ContactData contact = new ContactData()
                 .withFirstname("First name")
                 .withMiddlename("Middle name")
@@ -28,7 +25,8 @@ public class ContactCreationTests extends TestBase {
                 .withEmail3("email3")
                 .withHomePhone("111")
                 .withMobilePhone("222")
-                .withWorkPhone("333");
+                .withWorkPhone("333")
+                .withPhoto(photo);
         app.contact().create(contact);
         app.goTo().homePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
