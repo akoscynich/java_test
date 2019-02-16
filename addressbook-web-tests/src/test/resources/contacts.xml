@@ -1,0 +1,41 @@
+<list>
+  <data.ContactData>
+    <firstname>First name 0</firstname>
+    <middlename>Middle name 0</middlename>
+    <lastname>Last name 0</lastname>
+    <address>address 0</address>
+    <email>email 0</email>
+    <email2>email2 0</email2>
+    <email3>email3 0</email3>
+    <home>111 0</home>
+    <mobile>222 0</mobile>
+    <work>333 0</work>
+    <id>2147483647</id>
+  </data.ContactData>
+  <data.ContactData>
+    <firstname>First name 1</firstname>
+    <middlename>Middle name 1</middlename>
+    <lastname>Last name 1</lastname>
+    <address>address 1</address>
+    <email>email 1</email>
+    <email2>email2 1</email2>
+    <email3>email3 1</email3>
+    <home>111 1</home>
+    <mobile>222 1</mobile>
+    <work>333 1</work>
+    <id>2147483647</id>
+  </data.ContactData>
+  <data.ContactData>
+    <firstname>First name 2</firstname>
+    <middlename>Middle name 2</middlename>
+    <lastname>Last name 2</lastname>
+    <address>address 2</address>
+    <email>email 2</email>
+    <email2>email2 2</email2>
+    <email3>email3 2</email3>
+    <home>111 2</home>
+    <mobile>222 2</mobile>
+    <work>333 2</work>
+    <id>2147483647</id>
+  </data.ContactData>
+</list>
