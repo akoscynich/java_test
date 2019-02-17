@@ -15,10 +15,13 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.slf4j.*;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
+
 
     @DataProvider
     public Iterator<Object[]> validGroups() throws IOException {
@@ -58,5 +61,7 @@ public class GroupCreationTests extends TestBase {
         assertThat(app.group().count(), equalTo(before.size() + 1));
         Groups after = app.group().all();
         assertThat(before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt())), equalTo(after));
+
     }
+
 }
