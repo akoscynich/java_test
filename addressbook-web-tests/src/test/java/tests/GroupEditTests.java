@@ -12,31 +12,23 @@ import static org.testng.Assert.assertEquals;
 public class GroupEditTests extends TestBase {
 
     @BeforeMethod
-    public void ensurePrecon(){
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0){
+    public void ensurePrecon() {
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
         }
     }
 
     @Test//(enabled = false)
     public void testGroupEdition() throws Exception {
-
-        Groups before = app.group().all();
+        Groups before = app.db().groups();
         GroupData modifiedGroup = before.iterator().next();
-        //int index = before.size() -1;
         GroupData group = new GroupData()
                 .withId(modifiedGroup.getId()).withName("test4").withHeader("test5").withFooter("test6");
+        app.goTo().groupPage();
         app.group().modify(group);
         assertEquals(app.group().count(), before.size());
-        Groups after = app.group().all();
-
-        //before.remove(modifiedGroup);
-        //before.add(group);
-        //Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        //before.sort(byId);
-        //after.sort(byId);
-        //assertEquals(before, after);
+        Groups after = app.db().groups();
         assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
     }
 

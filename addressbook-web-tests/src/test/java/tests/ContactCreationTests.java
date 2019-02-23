@@ -37,7 +37,7 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validContacts")//(enabled = true)
     public void testContactCreation(ContactData contact) throws Exception {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         /*File photo = new File("src/test/resources/s1200.png");
         ContactData contact = new ContactData()
                 .withFirstname("First name")
@@ -54,7 +54,7 @@ public class ContactCreationTests extends TestBase {
         app.contact().create(contact);
         app.goTo().homePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         //contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         //before.add(contact);
         assertThat(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt())), equalTo(after));

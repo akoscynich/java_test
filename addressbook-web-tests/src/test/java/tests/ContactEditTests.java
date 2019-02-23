@@ -13,8 +13,8 @@ public class ContactEditTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecon() {
-        app.goTo().homePage();
-        if (app.contact().all().size() == 0) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().homePage();
             app.contact().create(new ContactData()
                     .withFirstname("First name")
                     .withMiddlename("Middle name")
@@ -31,7 +31,7 @@ public class ContactEditTests extends TestBase {
 
     @Test
     public void testContactEdit() throws Exception {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         //int index = before.size() -1;
         ContactData contact = new ContactData()
@@ -48,7 +48,7 @@ public class ContactEditTests extends TestBase {
                 .withId(modifiedContact.getId());
         app.contact().modify(contact);
         assertEquals(app.contact().count(), before.size());
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
 
         //before.remove(modifiedContact);
         //before.add(contact);

@@ -14,8 +14,8 @@ public class ContactInfoTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecon() {
-        app.goTo().homePage();
-        if (app.contact().all().size() == 0){
+        if (app.db().contacts().size() == 0) {
+            app.goTo().homePage();
             app.contact().create(new ContactData()
                     .withFirstname("First name")
                     .withMiddlename("Middle name")

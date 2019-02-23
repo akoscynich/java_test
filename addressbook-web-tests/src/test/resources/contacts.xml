@@ -25,17 +25,4 @@
     <work>333 1</work>
     <id>2147483647</id>
   </data.ContactData>
-  <data.ContactData>
-    <firstname>First name 2</firstname>
-    <middlename>Middle name 2</middlename>
-    <lastname>Last name 2</lastname>
-    <address>address 2</address>
-    <email>email 2</email>
-    <email2>email2 2</email2>
-    <email3>email3 2</email3>
-    <home>111 2</home>
-    <mobile>222 2</mobile>
-    <work>333 2</work>
-    <id>2147483647</id>
-  </data.ContactData>
 </list>
