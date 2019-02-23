@@ -63,6 +63,13 @@ public class ContactHelper extends HelperBase{
         clear(By.name("firstname"));
         clear(By.name("middlename"));
         clear(By.name("lastname"));
+        clear(By.name("address"));
+        clear(By.name("email"));
+        clear(By.name("email2"));
+        clear(By.name("email3"));
+        clear(By.name("home"));
+        clear(By.name("mobile"));
+        clear(By.name("work"));
     }
 
     public void submitContactEdit() {
