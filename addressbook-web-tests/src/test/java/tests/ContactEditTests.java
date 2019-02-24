@@ -33,7 +33,6 @@ public class ContactEditTests extends TestBase {
     public void testContactEdit() throws Exception {
         Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
-        //int index = before.size() -1;
         ContactData contact = new ContactData()
                 .withFirstname("First name1")
                 .withMiddlename("Middle name1")
@@ -49,10 +48,7 @@ public class ContactEditTests extends TestBase {
         app.contact().modify(contact);
         assertEquals(app.contact().count(), before.size());
         Contacts after = app.db().contacts();
-
-        //before.remove(modifiedContact);
-        //before.add(contact);
-
         assertThat(before.without(modifiedContact).withAdded(contact), equalTo(after));
+        verifyConListUi();
     }
 }

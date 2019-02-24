@@ -31,16 +31,13 @@ public class ContactDeletionTests extends TestBase {
 
     @Test//(enabled = false)
     public void testContactDeletion() throws Exception {
-
         Contacts before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
-        //int index = before.size() -1;
         app.contact().delete(deletedContact);
         assertThat(app.contact().count(), equalTo(before.size() - 1));
         Contacts after = app.db().contacts();
-
-        //before.remove(deletedContact);
         assertEquals(before.without(deletedContact), after);
+        verifyConListUi();
     }
 
 
