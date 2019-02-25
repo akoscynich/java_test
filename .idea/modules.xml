@@ -5,7 +5,13 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests.main.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests.test.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis-tests.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis-tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis-tests.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis-tests.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis-tests.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis-tests.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.iml" filepath="$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-853636517/sandbox.NN.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.test.iml" />
     </modules>
