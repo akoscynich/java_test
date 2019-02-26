@@ -16,40 +16,60 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private final Properties properties;
     private String browser;
-    WebDriver wd;
+    private WebDriver wd;
+    private RegHelper regHelper;
+    private FtpHelper ftp;
 
 
-    public ApplicationManager (String browser) {
+    public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
 
     }
 
-    public void init()  throws IOException {
+    public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-        if (browser.equals(BrowserType.FIREFOX)){
-            wd = new FirefoxDriver();
-        } else if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver(new ChromeOptions().setHeadless(false));
-        } else if (browser.equals(BrowserType.IE)){
-            wd = new InternetExplorerDriver();
-        }
-        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
+        if (wd != null)
         wd.quit();
     }
 
-    public HttpSession newSession(){
+    public HttpSession newSession() {
         return new HttpSession(this);
     }
 
-    public String getProperty(String key){
+    public String getProperty(String key) {
         return properties.getProperty(key);
     }
 
+    public RegHelper registration() {
+        if(regHelper == null)
+        regHelper = new RegHelper(this);
+        return regHelper;
+    }
+
+    public FtpHelper ftp(){
+        if (ftp == null)
+        ftp = new FtpHelper(this);
+        return ftp;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null){
+
+            if (browser.equals(BrowserType.FIREFOX)) {
+                wd = new FirefoxDriver();
+            } else if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver(new ChromeOptions().setHeadless(false));
+            } else if (browser.equals(BrowserType.IE)) {
+                wd = new InternetExplorerDriver();
+            }
+            wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
+    }
 }
