@@ -22,11 +22,19 @@ public class ApplicationManager {
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
     private PassChangeHelper passChangeHelper;
+    private SoapHelper soapHelper;
 
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 
     public PassChangeHelper passChangeHelper() {

@@ -14,6 +14,7 @@ dependencies {
     implementation 'org.subethamail:subethasmtp:3.1.7'
     implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     implementation 'ch.qos.logback:logback-classic:1.3.0-alpha4'
+    implementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
 
 }
 
@@ -29,3 +30,22 @@ test {
     }
 }
 
+buildscript{
+    repositories{
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'no.nils:wsdl2java:0.10'
+    }
+}
+apply plugin: 'no.nils.wsdl2java'
+
+wsdl2java {
+    generatedWsdlDir = file("src/main/java")  // target directory for generated source coude
+    wsdlDir = file("src/main/resources") // define to support incremental build
+    wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
+                          ['src/main/resources/wsdl/firstwsdl.wsdl'],
+
+    ]
+}
