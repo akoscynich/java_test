@@ -19,12 +19,20 @@ public class ApplicationManager {
     private WebDriver wd;
     private RegHelper regHelper;
     private FtpHelper ftp;
+    private MailHelper mailHelper;
 
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
 
+    }
+
+    public MailHelper mail() {
+        if(mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 
     public void init() throws IOException {
