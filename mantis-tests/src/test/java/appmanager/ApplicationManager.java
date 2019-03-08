@@ -20,12 +20,20 @@ public class ApplicationManager {
     private RegHelper regHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private JamesHelper jamesHelper;
 
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
 
+    }
+
+    public JamesHelper james() {
+        if(jamesHelper == null) {
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
     }
 
     public MailHelper mail() {
