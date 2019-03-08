@@ -21,3 +21,6 @@ gradle-app.setting
 *.iml
 *.log
 *.iml
+addressbook-web-tests/chromedriver.exe
+addressbook-web-tests/chromedriver
+mantis-tests/chromedriver.exe

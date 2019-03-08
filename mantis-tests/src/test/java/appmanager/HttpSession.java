@@ -20,7 +20,7 @@ public class HttpSession {
     private CloseableHttpClient httpclient;
     private ApplicationManager app;
 
-    public HttpSession(ApplicationManager app){
+    public HttpSession(ApplicationManager app) {
 
         this.app = app;
         httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
@@ -40,17 +40,17 @@ public class HttpSession {
         return body.contains(String.format("<span class=\"italic\">%s</span>", username));
     }
 
-    private String getTextFrom(CloseableHttpResponse response) throws IOException{
-        try{
+    private String getTextFrom(CloseableHttpResponse response) throws IOException {
+        try {
             return EntityUtils.toString(response.getEntity());
         } finally {
             response.close();
         }
     }
 
-    public boolean isLoggedAs(String username) throws IOException{
+    public boolean isLoggedAs(String username) throws IOException {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
-        CloseableHttpResponse response =httpclient.execute(get);
+        CloseableHttpResponse response = httpclient.execute(get);
         String body = getTextFrom(response);
         return body.contains(String.format("<span class=\"italic\">%s</span>", username));
     }

@@ -34,7 +34,7 @@ public class ApplicationManager {
 
     public void stop() {
         if (wd != null)
-        wd.quit();
+            wd.quit();
     }
 
     public HttpSession newSession() {
@@ -46,19 +46,19 @@ public class ApplicationManager {
     }
 
     public RegHelper registration() {
-        if(regHelper == null)
-        regHelper = new RegHelper(this);
+        if (regHelper == null)
+            regHelper = new RegHelper(this);
         return regHelper;
     }
 
-    public FtpHelper ftp(){
+    public FtpHelper ftp() {
         if (ftp == null)
-        ftp = new FtpHelper(this);
+            ftp = new FtpHelper(this);
         return ftp;
     }
 
     public WebDriver getDriver() {
-        if (wd == null){
+        if (wd == null) {
 
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
