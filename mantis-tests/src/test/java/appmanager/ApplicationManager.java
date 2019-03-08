@@ -21,12 +21,19 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private PassChangeHelper passChangeHelper;
 
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
+    }
 
+    public PassChangeHelper passChangeHelper() {
+        if (passChangeHelper == null) {
+            passChangeHelper = new PassChangeHelper(this);
+        }
+        return passChangeHelper;
     }
 
     public JamesHelper james() {

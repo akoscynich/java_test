@@ -31,6 +31,7 @@ public class HelperBase {
     }
 
 
+
     public boolean isElementPresent(By by) {
         try {
             wd.findElement(by);

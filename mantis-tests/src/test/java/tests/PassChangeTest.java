@@ -1,7 +1,7 @@
 package tests;
 
+import appmanager.HttpSession;
 import model.MailMessage;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class RegTests extends TestBase {
+public class PassChangeTest extends TestBase {
 
     @BeforeMethod
     public void startMailServer() {
@@ -21,18 +21,22 @@ public class RegTests extends TestBase {
     }
 
     @Test
-    public void testReg() throws IOException, MessagingException {
-        long now = System.currentTimeMillis();
-        String email = String.format("user%s@localhost.localdomain", now);
-        String user = "user" + now;
-        String password = "password";
-        //app.james().createUser(user, password);
-        app.registration().start(user, email);
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        //List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
+    public void testPassChange() throws IOException, MessagingException {
+
+        app.passChangeHelper().login();
+        app.passChangeHelper().goToManageUsersPage();
+        app.passChangeHelper().selectUser();
+        String userName = app.passChangeHelper().getUserName();
+        String email = app.passChangeHelper().getUserName() + "@localhost.localdomain";
+        app.passChangeHelper().resetPassword();
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
         String confirmationLink = findConfirmationLink(mailMessages, email);
-        app.registration().finish(confirmationLink, password);
-        assertTrue(app.newSession().login(user, password));
+        app.passChangeHelper().goToUrl(confirmationLink);
+        app.passChangeHelper().setNewPassword();
+
+        HttpSession session = app.newSession();
+        assertTrue(session.login(userName, "newpassword"));
+        assertTrue(session.isLoggedAs(userName));
 
     }
 
@@ -46,4 +50,5 @@ public class RegTests extends TestBase {
     public void stopMailServer() {
         app.mail().stop();
     }
+
 }
