@@ -5,8 +5,11 @@ import data.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class GroupHelper extends HelperBase {
 
@@ -124,5 +127,14 @@ public class GroupHelper extends HelperBase {
         groupCache = null;
         returnToGroupPage();
 
+    }
+
+    public void selectNew(long now) {
+        Select select = new Select(wd.findElement(By.name("to_group")));
+        select.selectByVisibleText(Long.toString(now));
+    }
+
+    public int getIdOfNewGroup(long now) {
+        return parseInt(wd.findElement(By.cssSelector("input[title='Select (" + now + ")']")).getAttribute("value"));
     }
 }

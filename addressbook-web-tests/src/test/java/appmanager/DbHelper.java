@@ -1,9 +1,6 @@
 package appmanager;
 
-import data.ContactData;
-import data.Contacts;
-import data.GroupData;
-import data.Groups;
+import data.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -36,5 +33,14 @@ public class DbHelper {
         session.getTransaction().commit();
         session.close();
         return new Contacts(result);
+    }
+
+    public ContactsInGroups contactsInGroup(int groupId){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactsInGroupsData> result = session.createQuery("from ContactsInGroups where group_id = '" + groupId + "'").list();
+        session.getTransaction().commit();
+        session.close();
+        return new ContactsInGroups(result);
     }
 }

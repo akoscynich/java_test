@@ -17,34 +17,22 @@ public class HbTest {
     private SessionFactory sessionFactory;
 
     @BeforeClass
-    protected void setUp() throws Exception{
+    protected void setUp() throws Exception {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }
 
-    /*@Test
-    public void testHb(){
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        List<GroupData> result = session.createQuery("from GroupData").list();
-        for (GroupData group : result){
-            System.out.println(group);
-        }
-        session.getTransaction().commit();
-        session.close();
-    }*/
-@Test
-    public void testHb(){
+    @Test
+    public void testHb() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
-        for (ContactData contact : result){
+        for (ContactData contact : result) {
             System.out.println(contact);
             System.out.println(contact.getGroups());
         }

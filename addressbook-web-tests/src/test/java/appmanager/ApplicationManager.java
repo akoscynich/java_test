@@ -9,6 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +32,6 @@ public class ApplicationManager {
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
-
     }
 
     public void init() throws IOException {

@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class ContactHelper extends HelperBase{
 
     public ContactHelper(WebDriver wd) {
@@ -45,6 +47,7 @@ public class ContactHelper extends HelperBase{
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
+
     public void editContactById(int id) {
         wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
     }
@@ -54,10 +57,6 @@ public class ContactHelper extends HelperBase{
         wd.switchTo().alert().accept();
         find(By.cssSelector("div.msgbox"));
     }
-
-    /*public void initContactEdit(int index) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
-    }*/
 
     public void clearContactForm() {
         clear(By.name("firstname"));
@@ -94,12 +93,6 @@ public class ContactHelper extends HelperBase{
 
     }
 
-    /*public void delete(int index) {
-        selectContact(index);
-        deleteContact();
-        gotoHomePage();
-    }*/
-
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
@@ -107,21 +100,6 @@ public class ContactHelper extends HelperBase{
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
-
-    /*public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> rows = wd.findElements(By.name("entry"));//new ArrayList<WebElement>();
-        for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));
-            String lastName = cells.get(1).getText();
-            String firstName = cells.get(2).getText();
-
-            int id = Integer.parseInt(row.findElement(By.cssSelector("input")).getAttribute("id"));
-            ContactData contact = new ContactData().withFirstname(firstName).withLastname(lastName).withId(id);
-            contacts.add(contact);
-        }
-        return contacts;
-    }*/
 
     private Contacts contactCache = null;
 
@@ -139,7 +117,7 @@ public class ContactHelper extends HelperBase{
             String emails = cells.get(4).getText();//.split("\n");
             String phones = cells.get(5).getText();//.split("\n");
 
-            int id = Integer.parseInt(row.findElement(By.cssSelector("input")).getAttribute("id"));
+            int id = parseInt(row.findElement(By.cssSelector("input")).getAttribute("id"));
             ContactData contact = new ContactData()
                     .withFirstname(firstName)
                     .withLastname(lastName)
@@ -184,5 +162,17 @@ public class ContactHelper extends HelperBase{
                 .withHomePhone(home)
                 .withMobilePhone(mobile)
                 .withWorkPhone(work);
+    }
+
+    public void addToGroup() {
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void selectNew(long now) {
+        wd.findElement(By.cssSelector("input[title='Select ( " + now + ")']")).click();
+    }
+
+    public int getIdOfNewContact(long now) {
+        return parseInt(wd.findElement(By.cssSelector("input[title='Select ( " + now + ")']")).getAttribute("id"));
     }
 }
