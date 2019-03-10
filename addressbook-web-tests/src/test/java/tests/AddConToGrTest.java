@@ -55,20 +55,17 @@ public class AddConToGrTest extends TestBase {
     }
 
 
-    @Test(expectedExceptions = java.util.NoSuchElementException.class)
+    @Test//(expectedExceptions = java.util.NoSuchElementException.class)
     public void testDelContactFromGroup() {
         app.goTo().groupPage();
         int idOfNewGroup = app.group().getIdOfNewGroup(now);
+        int before = app.db().contactsInGroup(idOfNewGroup).size();
         app.goTo().homePage();
         app.group().selectGroup(now);
         app.contact().selectNew(now);
         app.contact().removeFromGroup();
-        /*try {*/
-            ContactsInGroupsData contactsInGroupsData = app.db().contactsInGroup(idOfNewGroup).iterator().next();
-        /*}
-        catch (java.util.NoSuchElementException ex){
-            String success = "Success!";
-        }
-        assertEquals("Success!", success);*/
+        int after = app.db().contactsInGroup(idOfNewGroup).size();
+        assertEquals(before - 1, after);
+        //ContactsInGroupsData contactsInGroupsData = app.db().contactsInGroup(idOfNewGroup).iterator().next();
     }
 }
