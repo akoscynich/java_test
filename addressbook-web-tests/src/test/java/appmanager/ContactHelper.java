@@ -175,4 +175,8 @@ public class ContactHelper extends HelperBase{
     public int getIdOfNewContact(long now) {
         return parseInt(wd.findElement(By.cssSelector("input[title='Select ( " + now + ")']")).getAttribute("id"));
     }
+
+    public void removeFromGroup() {
+        wd.findElement(By.name("remove")).click();
+    }
 }

@@ -137,4 +137,9 @@ public class GroupHelper extends HelperBase {
     public int getIdOfNewGroup(long now) {
         return parseInt(wd.findElement(By.cssSelector("input[title='Select (" + now + ")']")).getAttribute("value"));
     }
+
+    public void selectGroup(long now) {
+        Select select = new Select(wd.findElement(By.name("group")));
+        select.selectByVisibleText(Long.toString(now));
+    }
 }

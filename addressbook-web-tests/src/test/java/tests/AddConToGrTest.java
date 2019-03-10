@@ -1,22 +1,23 @@
 package tests;
 
 import data.ContactData;
-import data.ContactsInGroups;
 import data.ContactsInGroupsData;
 import data.GroupData;
-import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import java.util.NoSuchElementException;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class AddConToGrTest extends TestBase {
 
     private long now = System.currentTimeMillis();
 
-    @BeforeMethod
+    @BeforeClass
     public void ensurePrecon() {
         app.goTo().homePage();
         app.contact().create(new ContactData()
@@ -54,4 +55,20 @@ public class AddConToGrTest extends TestBase {
     }
 
 
+    @Test(expectedExceptions = java.util.NoSuchElementException.class)
+    public void testDelContactFromGroup() {
+        app.goTo().groupPage();
+        int idOfNewGroup = app.group().getIdOfNewGroup(now);
+        app.goTo().homePage();
+        app.group().selectGroup(now);
+        app.contact().selectNew(now);
+        app.contact().removeFromGroup();
+        /*try {*/
+            ContactsInGroupsData contactsInGroupsData = app.db().contactsInGroup(idOfNewGroup).iterator().next();
+        /*}
+        catch (java.util.NoSuchElementException ex){
+            String success = "Success!";
+        }
+        assertEquals("Success!", success);*/
+    }
 }

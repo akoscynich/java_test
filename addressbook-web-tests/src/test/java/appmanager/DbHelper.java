@@ -43,4 +43,5 @@ public class DbHelper {
         session.close();
         return new ContactsInGroups(result);
     }
+
 }
