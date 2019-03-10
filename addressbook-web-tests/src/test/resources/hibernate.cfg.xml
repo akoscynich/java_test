@@ -37,6 +37,7 @@
         <!-- Names the annotated entity class -->
         <mapping class="data.GroupData"/>
         <mapping class="data.ContactData"/>
+        <mapping class="data.ContactsInGroupsData"/>
 
     </session-factory>
 
