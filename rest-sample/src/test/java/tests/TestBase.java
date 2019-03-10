@@ -32,16 +32,16 @@ public class TestBase {
     }
 
     private boolean isIssueOpen(int issueId) throws IOException {
-        return status(issueId).equals("Closed");
+        return state(issueId).equals("Closed");
     }
 
-    private String status(int issueId) throws IOException {
+    private String state(int issueId) throws IOException {
         String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues/" + issueId + ".json")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
         JsonElement issue = issues.getAsJsonArray().get(0);
-        JsonElement status = issue.getAsJsonObject().get("status");
-        return new Gson().fromJson(status, new TypeToken<String>(){}.getType());
+        JsonElement state = issue.getAsJsonObject().get("state");
+        return new Gson().fromJson(state, new TypeToken<String>(){}.getType());
     }
 
     private Executor getExecutor() {

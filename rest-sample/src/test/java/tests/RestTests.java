@@ -19,6 +19,7 @@ public class RestTests extends TestBase {
         Set<Issue> newIssues = getIssues();
         oldIssues.add(newIssue.withId(issueId));
         assertEquals(newIssues, oldIssues);
-        System.out.println(newIssue);
+        System.out.println(newIssue.getId());
+        //System.out.println(oldIssues);
     }
 }
