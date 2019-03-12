@@ -1,5 +1,6 @@
 package appmanager;
 
+import model.UserData;
 import org.openqa.selenium.By;
 
 public class PassChangeHelper extends HelperBase {
@@ -19,8 +20,8 @@ public class PassChangeHelper extends HelperBase {
         wd.findElement(By.linkText("Manage Users")).click();
     }
 
-    public void selectUser() {
-        click(By.xpath("//a[@href='manage_user_edit_page.php?user_id=2']"));
+    public void selectUser(UserData user) {
+        click(By.linkText(user.getUsername()));
     }
 
     public String getUserName() {

@@ -2,6 +2,7 @@ package tests;
 
 import appmanager.HttpSession;
 import model.MailMessage;
+import model.UserData;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,7 +26,8 @@ public class PassChangeTest extends TestBase {
 
         app.passChangeHelper().login();
         app.passChangeHelper().goToManageUsersPage();
-        app.passChangeHelper().selectUser();
+        UserData user = app.db().users().iterator().next();
+        app.passChangeHelper().selectUser(user);
         String userName = app.passChangeHelper().getUserName();
         String email = app.passChangeHelper().getUserName() + "@localhost.localdomain";
         app.passChangeHelper().resetPassword();

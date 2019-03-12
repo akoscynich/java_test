@@ -23,11 +23,15 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private PassChangeHelper passChangeHelper;
     private SoapHelper soapHelper;
-
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 
     public SoapHelper soap() {
