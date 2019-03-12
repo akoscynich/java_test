@@ -49,14 +49,14 @@ public class ApplicationManager {
     }
 
     public JamesHelper james() {
-        if(jamesHelper == null) {
+        if (jamesHelper == null) {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
     }
 
     public MailHelper mail() {
-        if(mailHelper == null) {
+        if (mailHelper == null) {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
