@@ -65,6 +65,7 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        dbHelper = new DbHelper();
     }
 
     public void stop() {
@@ -94,7 +95,6 @@ public class ApplicationManager {
 
     public WebDriver getDriver() {
         if (wd == null) {
-
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
             } else if (browser.equals(BrowserType.CHROME)) {
