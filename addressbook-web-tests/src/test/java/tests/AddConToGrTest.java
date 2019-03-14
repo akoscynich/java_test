@@ -3,15 +3,10 @@ package tests;
 import data.ContactData;
 import data.ContactsInGroupsData;
 import data.GroupData;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.NoSuchElementException;
-
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class AddConToGrTest extends TestBase {
 
@@ -19,23 +14,27 @@ public class AddConToGrTest extends TestBase {
 
     @BeforeClass
     public void ensurePrecon() {
-        app.goTo().homePage();
-        app.contact().create(new ContactData()
-                .withFirstname("")
-                .withMiddlename("Middle name")
-                .withLastname(Long.toString(now))
-                .withAddress("address")
-                .withEmail("email")
-                .withEmail2("email2")
-                .withEmail3("email3")
-                .withHomePhone("111")
-                .withMobilePhone("222")
-                .withWorkPhone("333"));
-        app.goTo().groupPage();
-        app.group().create(new GroupData()
-                .withName(Long.toString(now))
-                .withHeader("test2")
-                .withFooter("test3"));
+        if (app.db().contacts().size() == 0) {
+            app.goTo().homePage();
+            app.contact().create(new ContactData()
+                    .withFirstname("")
+                    .withMiddlename("Middle name")
+                    .withLastname(Long.toString(now))
+                    .withAddress("address")
+                    .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3")
+                    .withHomePhone("111")
+                    .withMobilePhone("222")
+                    .withWorkPhone("333"));
+        }
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(new GroupData()
+                    .withName(Long.toString(now))
+                    .withHeader("test2")
+                    .withFooter("test3"));
+        }
     }
 
     @Test
@@ -55,7 +54,7 @@ public class AddConToGrTest extends TestBase {
     }
 
 
-    @Test//(expectedExceptions = java.util.NoSuchElementException.class)
+    @Test
     public void testDelContactFromGroup() {
         app.goTo().groupPage();
         int idOfNewGroup = app.group().getIdOfNewGroup(now);
