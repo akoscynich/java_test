@@ -17,6 +17,7 @@ public class PassChangeHelper extends HelperBase {
     }
 
     public void goToManageUsersPage() {
+        wd.findElement(By.linkText("Manage")).click();
         wd.findElement(By.linkText("Manage Users")).click();
     }
 
