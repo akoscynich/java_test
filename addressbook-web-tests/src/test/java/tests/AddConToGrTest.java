@@ -1,8 +1,6 @@
 package tests;
 
-import data.ContactData;
-import data.ContactsInGroupsData;
-import data.GroupData;
+import data.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -11,6 +9,9 @@ import static org.testng.Assert.assertEquals;
 public class AddConToGrTest extends TestBase {
 
     private long now = System.currentTimeMillis();
+
+    //ContactData validContact = getValidContact();
+    //GroupData validGroup = getValidGroup();
 
     @BeforeClass
     public void ensurePrecon() {
@@ -53,7 +54,6 @@ public class AddConToGrTest extends TestBase {
         assertEquals(contactsInGroupsData.getGroupId(), idOfNewGroup);
     }
 
-
     @Test
     public void testDelContactFromGroup() {
         app.goTo().groupPage();
@@ -65,6 +65,40 @@ public class AddConToGrTest extends TestBase {
         app.contact().removeFromGroup();
         int after = app.db().contactsInGroup(idOfNewGroup).size();
         assertEquals(before - 1, after);
-        //ContactsInGroupsData contactsInGroupsData = app.db().contactsInGroup(idOfNewGroup).iterator().next();
     }
+
+    /*private ContactData getValidContact() {
+        Contacts contacts = app.db().contacts();
+        Groups groups = app.db().groups();
+        for (ContactData contact : contacts) {
+            if (contact.getGroups().size() < groups.size()) {
+                return contact;
+            }
+
+        }
+    }
+
+    private GroupData getValidGroup() {
+        Groups groups = app.db().groups();
+        for (GroupData group : contact.getGroups()) {
+            groups.remove(group);
+        }
+        if (groups.size() > 0) {
+            return groups.iterator().next();
+
+        }
+        return null;
+    }
+
+    private ContactData getAvailableContactToDeleteFromGroup() {
+        Contacts contacts = app.db().contacts();
+        for (ContactData contact : contacts) {
+            if (contact.getGroups().size() > 0) {
+                return contact;
+            }
+        }
+    }*/
 }
+
+
+
