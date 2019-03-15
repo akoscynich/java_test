@@ -44,13 +44,13 @@ public class DbHelper {
         return new ContactsInGroups(result);
     }
 
-    public Contacts valid(int validId){
+    /*public Contacts valid(int validId){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Contacts> result = session.createQuery("from ContactData where contact_id = '" + validId + "'").list();
         session.getTransaction().commit();
         session.close();
         return new Contacts(result);
-    }
+    }*/
 
 }

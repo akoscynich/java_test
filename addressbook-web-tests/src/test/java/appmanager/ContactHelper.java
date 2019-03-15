@@ -182,6 +182,6 @@ public class ContactHelper extends HelperBase{
     }
 
     public void removeFromGroup() {
-        wd.findElement(By.name("remove")).click();
+        wd.findElement(By.cssSelector("input[name='remove']")).click();
     }
 }
