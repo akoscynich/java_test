@@ -129,9 +129,9 @@ public class GroupHelper extends HelperBase {
 
     }
 
-    public void selectNew(long now) {
+    public void selectNew(int id) {
         Select select = new Select(wd.findElement(By.name("to_group")));
-        select.selectByVisibleText(Long.toString(now));
+        select.selectByValue(Integer.toString(id));
     }
 
     public int getIdOfNewGroup(long now) {
@@ -141,5 +141,10 @@ public class GroupHelper extends HelperBase {
     public void selectGroup(String validGroup) {
         Select select = new Select(wd.findElement(By.name("group")));
         select.selectByVisibleText(validGroup);
+    }
+
+    public void selectGroup(int groupId) {
+        Select select = new Select(wd.findElement(By.name("group")));
+        select.selectByValue(Integer.toString(groupId));
     }
 }
