@@ -168,12 +168,13 @@ public class ContactHelper extends HelperBase{
         wd.findElement(By.name("add")).click();
     }
 
-    public void selectNew(long now) {
-        wd.findElement(By.cssSelector("input[title='Select ( " + now + ")']")).click();
+    public void selectContact() {
+        wd.findElement(By.cssSelector("input[type='checkbox']")).click();
+       // wd.findElement(By.cssSelector("input[title='Select ( " + validContact.getLastname() + ")']")).click();
     }
 
     public int getIdOfNewContact(long now) {
-        return parseInt(wd.findElement(By.cssSelector("input[title='Select ( " + now + ")']")).getAttribute("id"));
+        return parseInt(wd.findElement(By.cssSelector("input[type='Select ( " + now + ")']")).getAttribute("id"));
     }
 
     public void removeFromGroup() {
