@@ -99,27 +99,39 @@ public class AddConToGrTest extends TestBase {
     Сначала выполняются все необходимые проверки, а затем сам тест.
     В этом тесте тоже надо сравнивать списки групп контакта после удаления контакта из группы.*/
 
-    /*@Test
+    @Test
     public void testDelContactFromGroup() {
         app.goTo().homePage();
         for (ContactData contact : app.db().contacts())
             if (contact.getGroups().size() > 0) {
-                int before = contact.getGroups().size();
+                Groups before = contact.getGroups();
                 String validGroup = contact.getGroups().iterator().next().getName();
+                GroupData group = contact.getGroups().iterator().next();
                 app.group().selectGroup(validGroup);
                 app.contact().selectContact(contact);
                 app.contact().removeFromGroup();
                 app.goTo().homePage();
-                int after = contact.getGroups().size();
-                assertEquals(before - 1, after);
+                Groups after = contact.getGroups();
+                assertEquals(before, after.without(group));
                 break;
             } else {
+                app.goTo().homePage();
+                app.contact().selectContact();
+                app.contact().addToGroup();
+
+                Groups before = contact.getGroups();
+                String validGroup = contact.getGroups().iterator().next().getName();
+                GroupData group = contact.getGroups().iterator().next();
+                app.group().selectGroup(validGroup);
+                app.contact().selectContact(contact);
+                app.contact().removeFromGroup();
+                app.goTo().homePage();
+                Groups after = contact.getGroups();
+                assertEquals(before, after.without(group));
 
 
-                testAddContactToGroup();
-                testDelContactFromGroup();
             }
-    }*/
+    }
 
     /*@Test
     public void testAddContactToGroup() {
