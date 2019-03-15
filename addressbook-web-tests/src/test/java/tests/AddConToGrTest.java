@@ -10,9 +10,6 @@ public class AddConToGrTest extends TestBase {
 
     private long now = System.currentTimeMillis();
 
-    //ContactData validContact;
-    //GroupData validGroup;
-
     @BeforeClass
     public void ensurePrecon() {
         if (app.db().contacts().size() == 0) {
@@ -49,7 +46,6 @@ public class AddConToGrTest extends TestBase {
                         .withFooter("test3"));
             }
         }
-
     }
 
     @Test
@@ -58,23 +54,38 @@ public class AddConToGrTest extends TestBase {
         int before = app.db().contacts().iterator().next().getGroups().size();
         app.contact().selectContact();
         if (app.db().groups().size() > 1)
-        app.group().selectNew(now * 2);
+            app.group().selectNew(now * 2);
         app.contact().addToGroup();
         int after = app.db().contacts().iterator().next().getGroups().size();
 
         assertEquals(before + 1, after);
     }
 
+
+    /*    когда контакт удалён из всех групп надо предварительно добавить контакт в группу, а затем удалить этот контакт из группы.
+
+    Сравнивать надо изменившиеся списки групп контакта после добавления или удаления.*/
+
+    ContactData valid;
+
     @Test
     public void testDelContactFromGroup() {
-        app.goTo().groupPage();
-        int idOfNewGroup = app.group().getIdOfNewGroup(now);
-        int before = app.db().contactsInGroup(idOfNewGroup).size();
+        for (ContactData contact : app.db().contacts())
+            if (contact.getGroups().size() > 0)
+                valid = contact;
+            else testAddContactToGroup();
         app.goTo().homePage();
-        app.group().selectGroup(now);
-        //app.contact().selectContact(now);
+        int before = valid.getGroups().size();
+        app.contact().selectContact(valid);
+        String validGroup = valid.getGroups().iterator().next().getName();
+        app.group().selectGroup(validGroup);
         app.contact().removeFromGroup();
-        int after = app.db().contactsInGroup(idOfNewGroup).size();
+        int validId;
+        for (ContactData contact : app.db().valid(validId)) {
+            validId = contact.getId();
+            valid = contact;
+        }
+        int after = valid.getGroups().size();
         assertEquals(before - 1, after);
     }
 

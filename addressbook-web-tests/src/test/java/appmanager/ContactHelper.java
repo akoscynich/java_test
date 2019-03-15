@@ -170,7 +170,11 @@ public class ContactHelper extends HelperBase{
 
     public void selectContact() {
         wd.findElement(By.cssSelector("input[type='checkbox']")).click();
-       // wd.findElement(By.cssSelector("input[title='Select ( " + validContact.getLastname() + ")']")).click();
+        // wd.findElement(By.cssSelector("input[title='Select ( " + validContact.getLastname() + ")']")).click();
+    }
+    public void selectContact(ContactData valid) {
+        //wd.findElement(By.cssSelector("input[type='checkbox']")).click();
+        wd.findElement(By.cssSelector("input[title='Select ( " + valid.getLastname() + ")']")).click();
     }
 
     public int getIdOfNewContact(long now) {
