@@ -48,20 +48,19 @@ public class AddConToGrTest extends TestBase {
 
     @Test
     public void testAddContactToGroup() {
-        Contacts contacts = app.db().contacts();
+        ContactData validContact = null;
         for (ContactData contact : app.db().contacts())
-            if (contact.getGroups().size() == app.db().groups().size())
-                contacts.remove(contact);
-        ContactData contact = contacts.iterator().next();
-        Groups before = contact.getGroups();
+            if (contact.getGroups().size() < app.db().groups().size())
+                validContact = contact;
+        Groups before = validContact.getGroups();
         Groups allGroup = app.db().groups();
-        allGroup.remove(before);
+        allGroup.removeAll(before);
         GroupData group = allGroup.iterator().next();
         app.goTo().homePage();
         app.group().selectNew(group.getId());
-        app.contact().selectContactById(contact.getId());
+        app.contact().selectContactById(validContact.getId());
         app.contact().addToGroup();
-        Groups after = contact.getGroups();
+        Groups after = app.db().contactById(validContact.getId()).iterator().next().getGroups();
         assertEquals(before.withAdded(group), after);
     }
 
@@ -74,11 +73,10 @@ public class AddConToGrTest extends TestBase {
         for (ContactData contact : app.db().contacts())
             if (contact.getGroups().size() == 0) {
                 app.goTo().homePage();
-                app.group().selectGroupById(app.db().groups().iterator().next().getId());
                 app.contact().selectContactById(contact.getId());
                 app.contact().addToGroup();
                 validContact = contact;
-                validGroup = contact.getGroups().iterator().next();
+                validGroup = app.db().contactById(validContact.getId()).iterator().next().getGroups().iterator().next();
                 groupId = validGroup.getId();
                 before = contact.getGroups();
             } else {
@@ -88,14 +86,13 @@ public class AddConToGrTest extends TestBase {
                 before = contact.getGroups();
             }
         app.goTo().homePage();
-        app.contact().selectContactById(validContact.getId());
         app.group().selectGroupById(groupId);
+        app.contact().selectContactById(validContact.getId());
         app.contact().removeFromGroup();
-        Groups after = validContact.getGroups();
+        Groups after = app.db().contactById(validContact.getId()).iterator().next().getGroups();
         assertEquals(before.without(validGroup), after);
     }
-
-
+    
 }
 
 
