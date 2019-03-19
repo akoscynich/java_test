@@ -62,7 +62,7 @@ public class AddConToGrTest extends TestBase {
         app.contact().selectContactById(contact.getId());
         app.contact().addToGroup();
         Groups after = contact.getGroups();
-        assertEquals(before, after.withAdded(group));
+        assertEquals(before.withAdded(group), after);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AddConToGrTest extends TestBase {
         app.group().selectGroupById(groupId);
         app.contact().removeFromGroup();
         Groups after = validContact.getGroups();
-        assertEquals(before, after.withAdded(validGroup));
+        assertEquals(before.without(validGroup), after);
     }
 
 
