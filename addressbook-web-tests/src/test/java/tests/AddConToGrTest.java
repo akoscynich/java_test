@@ -67,7 +67,6 @@ public class AddConToGrTest extends TestBase {
 
     @Test
     public void testDelContactFromGroup() {
-        Groups groups = app.db().groups();
         ContactData validContact = null;
         GroupData validGroup = null;
         Groups before = null;
@@ -75,7 +74,7 @@ public class AddConToGrTest extends TestBase {
         for (ContactData contact : app.db().contacts())
             if (contact.getGroups().size() == 0) {
                 app.goTo().homePage();
-                app.group().selectGroupById(groups.iterator().next().getId());
+                app.group().selectGroupById(app.db().groups().iterator().next().getId());
                 app.contact().selectContactById(contact.getId());
                 app.contact().addToGroup();
                 validContact = contact;
